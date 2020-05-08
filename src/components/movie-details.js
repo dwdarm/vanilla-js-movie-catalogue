@@ -117,7 +117,11 @@ class MovieDetails extends HTMLElement {
     });
     this.querySelector('.genres-tags').innerHTML = genresTags;
     
-    this.innerHTML += `<movie-similiar-fetcher movie-id="${this._movieId}"></movie-similiar-fetcher>`;
+    const movieSimiliarFetcher = document.createElement('movie-similiar-fetcher');
+    movieSimiliarFetcher.router = this._router;
+    movieSimiliarFetcher.setAttribute('movie-id', this._movieId);
+    
+    this.appendChild(movieSimiliarFetcher);
     
     if (this._router) {
       this._router.updatePageLinks();

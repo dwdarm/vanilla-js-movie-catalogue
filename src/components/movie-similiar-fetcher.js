@@ -20,6 +20,10 @@ class MovieSimiliarFetcher extends HTMLElement {
       })
   }
   
+  set router(router) {
+    this._router = router;
+  }
+  
   renderLoading() {
     this.innerHTML = `
     <div class="section">
@@ -39,7 +43,11 @@ class MovieSimiliarFetcher extends HTMLElement {
       </div>
     </div>
     `
+    
     document.querySelector('movie-list').movies = this._movies;
+    if (this._router) {
+      this._router.updatePageLinks();
+    }
   }
 }
 
